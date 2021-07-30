@@ -2,10 +2,29 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
+ display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+align-content: center; 
 margin-left: auto; 
 margin-right: auto;
 height: 100vh;
+/* background-color: red; */
 `;
+
+const Content = styled.div`
+/* display: flex; */
+width: 400px;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+align-content: center;
+background-color: #f3f3f3f3;
+`;
+
 
 export default function Home() {
   const axios = require("axios").default;
@@ -46,18 +65,22 @@ export default function Home() {
   return (
     <>
       <Container>
-        <input
-          type="text"
-          placeholder="Digite a cidade: "
-          onChange={e => setCity(e.target.value)}
-        />
-        <button onClick={getWeather}>Buscar</button>
-        {weather.map((wt) => (
-          <div key={wt.main}>
-            <h1>Cidade: {wt.name}</h1>
-            <h1>Temperatura atual: {parseInt(wt?.main?.temp)}º</h1>
-          </div>
-        ))}
+        <Content>
+          <h2 style={{marginBottom: '10px'}}>BUSCATEMP!</h2>
+          <input
+            type="text"
+            placeholder="Digite a cidade: "
+            onChange={e => setCity(e.target.value)}
+          /><br/>
+          <button onClick={getWeather}>Buscar</button><hr />
+          {weather.map((wt) => (
+            <div key={wt.main} style={{width: '500px', marginTop: '20px', marginBottom: '10px', textAlign: 'center', borderRadius: '10px', background: '#f5f5'}}>
+              <h1>{wt.name}</h1>
+              <h2>Temperatura atual: <span style={{fontSize: '30px', color: 'blue'}}>{parseInt(wt?.main?.temp)}ºC</span> </h2>
+              <h4>{parseInt(wt.main.temp) <= 15 ? 'Beacap está com frio!! ☁' : '"Sensação de agradável à quente" 🌥' }</h4>
+            </div>
+          ))}
+        </Content>
       </Container>
     </>
   )

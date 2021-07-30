@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     box-sizing: border-box;
     font-family: sans-serif;
-    background-color: #D9E6F6;
+    /* background-color: #D9E6F6; */
   }
   #_next {
     display: flex;
@@ -18,19 +18,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-}
+// const theme = {
+//   colors: {
+//     primary: '#0070f3',
+//   },
+// }
 
 export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
         <Component {...pageProps} />
-      </ThemeProvider>
     </>
   )
 }
